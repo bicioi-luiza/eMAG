@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Update</title>
+    <link rel="stylesheet" href="../css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+</head>
+<body>
+<div th:if="${session.loggedInUser.isAdmin}">
+<div class="navbar">
+    <marquee style='background:#000000'>
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <!-- Navigation menu -->
+        <li class='dropdown'> <a href="/shopping-carts">SHOPPING CART</a>
+            <div class='dropdown-content'>
+                <a href='/shopping-carts'> READ </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/sales">SALES</a>
+            <div class='dropdown-content'>
+                <a href='/sales/insertSale'> CREATE </a>
+                <a href='/sales/updateSale'> UPDATE </a>
+                <a href='/sales'> READ </a>
+                <a href='/sales/deleteSale'> DELETE </a>
+            </div>
+        </li>
+
+        <li class='dropdown'> <a href="/orders">ORDERS</a>
+            <div class='dropdown-content'>
+                <a href='/orders/insertOrder'> CREATE </a>
+                <a href='/orders/updateOrder'> UPDATE </a>
+                <a href='/orders'> READ </a>
+                <a href='/orders/deleteOrder'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/products">PRODUCTS</a>
+            <div class='dropdown-content'>
+                <a href='/products/insertProduct'> CREATE </a>
+                <a href='/products/updateProduct'> UPDATE </a>
+                <a href='/products'> READ </a>
+                <a href='/products/deleteProduct'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/users">USERS</a>
+            <div class='dropdown-content'>
+                <a href='/userCreate'> CREATE </a>
+                <a href="/userUpdate"> UPDATE </a>
+                <a href='/users'> READ </a>
+                <a href='/userDelete'> DELETE </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<h1>Product Update</h1>
+<!-- Popup container for getting product by ID -->
+<section id="getProductForm" class="container_id">
+    <form th:action="@{/products/productUpdateDetails}" method="get">
+        <input type="text" id="productID" name="id" placeholder="Enter Product ID">
+        <input type="submit" value="Get Product">
+        <button type="button" class="btn cancel" onclick="redirectToProductsPage()">Cancel</button>
+    </form>
+</section>
+<!-- Form for displaying product data -->
+<section id="productDataForm" class="container_id" th:if="${products}" onsubmit="prepareFormData()">
+    <form th:action="@{/products/updateProduct}" th:method="POST" th:modelAttribute="productDTO">
+
+        <!-- Add the product ID as a hidden input field -->
+        <input type="hidden" name="id" th:value="${products.idProd}">
+
+        <label for="nameProd">Product Name:</label>
+        <input type="text" id="nameProd" name="nameProd" th:value="${products.nameProd}">
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" th:value="${products.description}">
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" th:value="${products.price}">
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" th:value="${products.category}">
+
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" th:value="${products.stock}">
+
+        <input type="submit" value="Update Product">
+    </form>
+</section>
+</div>
+<script>
+    function prepareFormData() {
+
+    }
+
+    function redirectToProductsPage() {
+        window.location.href = "/products";
+    }
+</script>
+</body>
+</html>

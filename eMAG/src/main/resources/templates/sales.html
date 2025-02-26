@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales</title>
+    <link rel="stylesheet" th:href="@{../css/styleHome.css}">
+    <link rel="stylesheet" th:href="@{../css/users.css}">
+</head>
+<body>
+<div class="container mt-5" th:if="${not session.loggedInUser.isAdmin}">
+    <div class="alert alert-danger" role="alert" th:if="${not session.loggedInUser.isAdmin}">
+        You are not an admin.
+    </div>
+</div>
+<div th:if="${session.loggedInUser.isAdmin}">
+<div class="navbar">
+    <marquee style='background:#000000'>
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <!-- Navigation menu -->
+        <li class='dropdown'> <a href="/shopping-carts">SHOPPING CART</a>
+            <div class='dropdown-content'>
+                <a href='/shopping-carts'> READ </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/sales">SALES</a>
+            <div class='dropdown-content'>
+                <a href='/sales/insertSale'> CREATE </a>
+                <a href='/sales/updateSale'> UPDATE </a>
+                <a href='/sales'> READ </a>
+                <a href='/sales/deleteSale'> DELETE </a>
+            </div>
+        </li>
+
+        <li class='dropdown'> <a href="/orders">ORDERS</a>
+            <div class='dropdown-content'>
+                <a href='/orders/insertOrder'> CREATE </a>
+                <a href='/orders/updateOrder'> UPDATE </a>
+                <a href='/orders'> READ </a>
+                <a href='/orders/deleteOrder'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/products">PRODUCTS</a>
+            <div class='dropdown-content'>
+                <a href='/products/insertProduct'> CREATE </a>
+                <a href='/products/updateProduct'> UPDATE </a>
+                <a href='/products'> READ </a>
+                <a href='/products/deleteProduct'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/users">USERS</a>
+            <div class='dropdown-content'>
+                <a href='/userCreate'> CREATE </a>
+                <a href="/userUpdate"> UPDATE </a>
+                <a href='/users'> READ </a>
+                <a href='/userDelete'> DELETE </a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- Popup container for getting user by ID -->
+<section id="getUserForm" class="container_id">
+    <form th:action="@{/sales/byId}" method="get">
+        <input type="text" id="userID" name="id" placeholder="Enter Sale ID">
+        <input type="submit" value="Get Sale">
+        <button type="button" class="btn cancel" th:onclick="|window.location.href='/sales'|">Cancel</button>
+    </form>
+</section>
+
+<h1 align="center">Sales List</h1>
+
+<div class="container" th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Old Price</th>
+        <th>New Price</th>
+        <th>Percent</th>
+        <th>User ID</th>
+        <th>Product ID</th>
+        <!-- Add more columns as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of sales -->
+    <tr th:each="sale : ${sales}">
+        <td th:text="${sale.idSale}"></td>
+        <td th:text="${sale.oldPrice}"></td>
+        <td th:text="${sale.newPrice}"></td>
+        <td th:text="${sale.percent}"></td>
+        <td th:text="${sale.userId}"></td>
+        <td th:text="${sale.productId}"></td>
+        <!-- Add more columns as needed -->
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

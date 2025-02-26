@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+    <link rel="stylesheet" href="../css/products.css" type="text/css" />
+    <style>
+        /* Your existing CSS styles here */
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <marquee style='background:#000000' >
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <li class='dropdown'>
+            <a th:href="@{/userOrderStatus(id=${session.loggedInUser.id})}">COMANDA</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a th:href="@{/shopping-carts/customerCart(id=${session.loggedInUser.shoppingcart.idCart})}">SHOPPING CART</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/reviews">REVIEWS</a>
+            <!-- Dropdown content for reviews -->
+            <div class='dropdown-content'>
+                <!-- Link to view all reviews -->
+                <a href='/reviews'>View Reviews</a>
+            </div>
+        </li>
+        <li class='dropdown'>
+            <a href="/products/customer">CUSTOMER</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/">HOME-LOGOUT</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <h2>Your Shopping Cart</h2>
+    <div class="cart-items">
+        <!-- Check if shoppingCarts and orderItems are not null -->
+        <div th:if="${shoppingCarts != null && shoppingCarts.orderItems != null}">
+            <!-- Loop through each item in the shopping cart -->
+            <div class="cart-item" th:each="item : ${shoppingCarts.orderItems}">
+                <!-- Display product details -->
+                <div class="cart-item-details">
+                    <!-- Display product name -->
+                    <h3 th:text="${item.product != null ? item.product.nameProd : 'Unknown Product'}">Product Name</h3>
+                    <!-- Display product quantity -->
+                    <p>Quantity: <span th:text="${item.quantity}">1</span></p>
+                </div>
+                <!-- Action buttons -->
+                <div class="action-buttons">
+                    <!-- Delete button -->
+                    <form th:action="@{/orderItems/deleteOrderItem}" method="post">
+                        <input type="hidden" name="id" th:value="${item.id}">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <!-- Update button -->
+                    <form th:action="@{/orderItems/updateOrderItem}" method="post" th:modelAttribute="orderItemDTO">
+                        <input type="hidden" name="id" th:value="${item.id}">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" th:value="${item.quantity}" min="1">
+
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Display total -->
+    <div class="total">
+        <strong>Total: $<span th:text="${shoppingCarts != null ? shoppingCarts.total : '0.00'}">0.00</span></strong>
+    </div>
+    <!-- Place order button -->
+    <div class="place-order-button">
+        <form th:action="@{/orders/insertOrderCustomer}" method="post" th:modelAttribute="orderDTO">
+            <label for="fileType">Select File Type:</label>
+            <select id="fileType" name="fileType">
+                <option value="pdf">PDF</option>
+                <option value="csv">CSV</option>
+                <option value="txt">TXT</option>
+            </select><br>
+            <input type="hidden" id="userId" name="users_id" th:value="${session.loggedInUser.id}"><br>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

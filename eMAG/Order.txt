@@ -1,0 +1,4 @@
+Order Details:
+Product: Masina de spalat, Quantity: 1, Price: 2175.74
+Product: Banda de alergat, Quantity: 2, Price: 1259.99
+Total Price: 4695.7245

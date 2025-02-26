@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Orders</title>
+    <link rel="stylesheet" href="/css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+    <link rel="stylesheet" href="../css/products.css" type="text/css" />
+    <style>
+        /* Your existing CSS styles here */
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <marquee style='background:#000000' >
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <li class='dropdown'>
+            <a th:href="@{/userOrderStatus(id=${session.loggedInUser.id})}">COMANDA</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a th:href="@{/shopping-carts/customerCart(id=${session.loggedInUser.shoppingcart.idCart})}">SHOPPING CART</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/reviews">REVIEWS</a>
+            <!-- Dropdown content for reviews -->
+            <div class='dropdown-content'>
+                <!-- Link to view all reviews -->
+                <a href='/reviews'>View Reviews</a>
+            </div>
+        </li>
+        <li class='dropdown'>
+            <a href="/products/customer">CUSTOMER</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/">HOME-LOGOUT</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <h2>User Orders</h2>
+    <div class="cart-items">
+        <!-- Check if orders are not null -->
+        <div th:if="${users.orders != null}">
+            <!-- Loop through each order -->
+            <div class="cart-item" th:each="order : ${users.orders}">
+                <!-- Display order details -->
+                <div class="cart-item-details">
+                    <!-- Display order ID -->
+                    <h3 th:text="${order != null ? 'Order ID: ' + order.idOrder : 'Order ID: Unknown'}"></h3>
+                    <!-- Display order status -->
+                    <p>Status: <span th:text="${order != null ? order.status : 'Unknown'}"></span></p>
+                </div>
+                <!-- Check if order items are not null -->
+                <div class="action-buttons">
+                    <ul th:if="${order != null && order.orderItems != null}">
+                        <!-- Loop through each item in the order -->
+                        <li th:each="item : ${order.orderItems}">
+                            <!-- Display product details -->
+                            <p>Product Name: <span th:text="${item.product != null ? item.product.nameProd : 'Unknown Product'}"></span></p>
+                            <p>Quantity: <span th:text="${item.quantity}"></span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

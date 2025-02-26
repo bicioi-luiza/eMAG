@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link rel="stylesheet" th:href="@{../css/styleHome.css}">
+    <link rel="stylesheet" th:href="@{../css/users.css}">
+</head>
+<body>
+<div class="navbar">
+    <marquee style='background:#000000' >
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <li class='dropdown'>
+            <a th:href="@{/userOrderStatus(id=${session.loggedInUser.id})}">COMANDA</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a th:href="@{/shopping-carts/customerCart(id=${session.loggedInUser.shoppingcart.idCart})}">SHOPPING CART</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/reviews">REVIEWS</a>
+            <!-- Dropdown content for reviews -->
+            <div class='dropdown-content'>
+                <!-- Link to view all reviews -->
+                <a href='/reviews'>View Reviews</a>
+            </div>
+        </li>
+        <li class='dropdown'>
+            <a href="/products/customer">CUSTOMER</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/">HOME-LOGOUT</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+    </ul>
+</div>
+
+
+<h1 align="center">Reviews List</h1>
+
+<div class="container" th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Review Date</th>
+        <th>Rating</th>
+        <th>Comment</th>
+        <th>User ID</th>
+        <th>Product ID</th>
+        <!-- Add more columns as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of reviews -->
+    <tr th:each="review : ${reviews}">
+        <td th:text="${review.idReview}"></td>
+        <td th:text="${review.reviewDate}"></td>
+        <td th:text="${review.rating}"></td>
+        <td th:text="${review.comment}"></td>
+        <td th:text="${review.user_id}"></td>
+        <td th:text="${review.product_id1}"></td>
+        <!-- Add more columns as needed -->
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

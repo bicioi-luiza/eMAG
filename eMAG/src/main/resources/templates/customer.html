@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+    <link rel="stylesheet" href="../css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+    <link rel="stylesheet" href="../css/products.css" type="text/css" />
+    <style>
+        select {
+            background-color: dodgerblue;
+            color: white;
+            border: 1px solid #000000;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        select option {
+            color: black;
+        }
+
+        select option:checked {
+            background-color: black;
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <marquee style='background:#000000' >
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <li class='dropdown'>
+            <a th:href="@{/userOrderStatus(id=${session.loggedInUser.id})}">COMANDA</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a th:href="@{/shopping-carts/customerCart(id=${session.loggedInUser.shoppingcart.idCart})}">SHOPPING CART</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/reviews">REVIEWS</a>
+            <!-- Dropdown content for reviews -->
+            <div class='dropdown-content'>
+                <!-- Link to view all reviews -->
+                <a href='/reviews'>View Reviews</a>
+            </div>
+        </li>
+        <li class='dropdown'>
+            <a href="/products/customer">CUSTOMER</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/">HOME-LOGOUT</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+    </ul>
+</div>
+
+<h1 align="center">Products List</h1>
+<section id="getUserForm" class="container_id">
+    <h2>Alege categoria si daca iti doresti ca lista noastra sa fie sortata intr-un mod anume</h2><br>
+<form th:action="@{/products/byCategory}" method="get">
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+        <option value="Electrocasnice">Electrocasnice</option>
+        <option value="Sport">Sport</option>
+        <option value="Laptopuri">Laptopuri</option>
+    </select><br>
+    <label for="sort">In functie de pret:</label>
+    <select id="sort" name="sort">
+        <option value="ASC">ASC</option>
+        <option value="DESC">DESC</option>
+    </select>
+    <button type="submit" class="action-button">Submit</button>
+</form></section>
+<!-- Iterate over the list of products -->
+<div th:each="product : ${products}" class="product-square">
+    <!-- Display product information -->
+    <div class="product-name" th:text="${product.nameProd}"></div>
+    <div class="product-info" th:text="${product.description}"></div>
+    <div class="product-info" th:text="'Price: ' + ${product.price}"></div>
+    <div class="product-info" th:text="'Category: ' + ${product.category}"></div>
+    <div class="product-info" th:text="'Stock: ' + ${product.stock}"></div>
+    <!-- Add to cart button -->
+    <form id="cartForm" method="POST" th:action="@{/orderItems/insertOrderItem}" th:modelAttribute="orderItemDTO">
+        <!-- Hidden input field for product ID -->
+
+        <input type="hidden" id="productId" name="productId" th:value="${product.idProd}">
+        <input type="hidden" id="cartId" name="cartId" th:value="${session.loggedInUser.shoppingcart.idCart}">
+        <!-- Input field for quantity -->
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
+        <!-- Submit button -->
+        <button type="submit" class="action-button">Add to Cart</button>
+    </form>
+    <!-- Add review button -->
+    <a th:href="@{/reviews/add-review(productId=${product.idProd}, userId=${session.loggedInUser.id})}" class="action-button">Add Review</a>
+
+
+</div>
+
+<!-- Pop-up container for adding product to cart -->
+<div id="popup" class="popup-container">
+    <div class="popup-content">
+        <span class="close" onclick="hidePopup()">&times;</span>
+        <!-- Display the product name -->
+        <h2 id="popupProductNameDisplay"></h2>
+    </div>
+</div>
+<script>
+</script>
+
+</body>
+</html>

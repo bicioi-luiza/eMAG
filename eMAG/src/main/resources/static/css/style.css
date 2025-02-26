@@ -1,0 +1,168 @@
+
+body {
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+*{
+    margin:0px;
+    padding:0px;
+}
+
+
+.navbar{
+
+    width:auto;
+    height:100px;
+    clear:both;
+    margin-bottom:10px;
+}
+
+
+.title_container {
+    padding-top: 12px;
+    justify-content: center;
+}
+
+.title_container h1 {
+    justify-content: center;
+    font-family: "cooper black";
+    font-weight: bold;
+    color: #0a0908;
+    font-size: 24px;
+
+}
+
+.title_container h2 {
+    justify-content: center;
+    font-family: "cooper black";
+    font-weight: bold;
+    color:#0a0908;
+    font-size: 24px;
+
+}
+
+.menu_container{
+    float:right;
+    padding-top: 14px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li {
+    float: right;
+    background_color:black;
+
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: #FFFFFF;
+    background: #0a0908;
+    text-align: center;
+    padding: 20px ;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: lightpink;
+    min-width: 140px;
+}
+
+li.dropdown {
+    display: inline-block;
+    background-color:black;
+    min-width: 160px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #9999CC;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px ;
+}
+
+.dropdown-content a {
+    color: #FFFFFF;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #330033}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.main_container3{
+    font-family: impact;
+    font-size: 22px;
+    color:#000000;
+}
+
+.my_space2 {
+    justify-content: center;
+    width:60%;
+
+    color:#000000;
+    background-color:#b3d9ff;
+    opacity: 0.9;
+    font-family: impact;
+    font-size: 22px;
+
+    margin:auto;
+    z-index: 1;
+    padding-bottom:5px;
+
+}
+.my_space1 {
+    justify-content: center;
+    width:60%;
+
+    background-color:#b3d9ff;
+    opacity: 0.9;
+    font-family: impact;
+    font-size: 18px;
+    color:#000000;
+    margin:auto;
+    z-index: 1;
+    padding-bottom:65px;
+
+}
+.my_space3 {
+
+    float: left;
+
+    width:3%;
+
+    background-color:#b3d9ff;
+    opacity: 0.9;
+    font-family: impact;
+    font-size: 18px;
+    text-align:center;
+    color:#000000;
+    margin:auto;
+    z-index: 1;
+    padding-bottom:0;
+
+}
+
+
+
+
+
+
+	
+	
+

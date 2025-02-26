@@ -1,0 +1,114 @@
+/* users.css */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    opacity: 0.8; /* Set the opacity value (0.0 to 1.0) */
+    background-color: black; /* Set table background color to black */
+    color: white; /* Set text color to white */
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #000000;
+}
+
+tr:nth-child(even) {
+    background-color: #000000;
+}
+
+.container {
+    width: 80%;
+    margin: 30px auto; /* Added margin-top to move the table down */
+    background-color: rgba(0, 0, 0, 0.8); /* Set container background color to black with opacity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color:white;
+}
+
+
+
+.container_id {
+    width: 80%;
+    margin:0px;
+    margin-bottom: 50px; /* Added margin-top to move the table down */
+    margin-top: 140px;
+    background-color: rgba(0, 0, 0, 0.8); /* Set container background color to black with opacity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color:white;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color for button */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #000000; /* Darker blue color on hover */
+}
+
+.error {
+    width: 80%;
+    margin: 30px auto; /* Added margin-top to move the table down */
+    background-color: rgba(255, 0, 0, 0.8); /* Set container background color to black with opacity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color:white;
+}
+
+#inputContainer {
+    margin-top: 230px;
+    text-align: center; /* Center align the contents */
+}
+
+#inputField {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+input {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color for button */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input:hover {
+    background-color: #000000; /* Darker blue color on hover */
+}
+
+
+
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 8px 8px 0 0; /* Added border radius */
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 0 0 8px 8px; /* Added border radius */
+}
+

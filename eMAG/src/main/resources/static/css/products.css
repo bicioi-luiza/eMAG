@@ -1,0 +1,87 @@
+/* Style for product squares */
+.product-square {
+    display: inline-block;
+    width: 200px;
+    height: 250px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-square:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+/* CSS for the popup container */
+.popup-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Position fixed to cover the entire page */
+    z-index: 1; /* Set the z-index to make sure it appears above other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    padding-top: 60px; /* Space for navbar */
+}
+
+/* CSS for the popup content */
+.popup-content {
+    background-color: #fefefe; /* White background */
+    margin: auto; /* Center the content */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 80% of the container width */
+}
+
+/* Close button style */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

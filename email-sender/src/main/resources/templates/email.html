@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <style>
+        /* CSS styling for the email */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(215, 130, 215); /* Pale pink transparent background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            text-align: center;
+        }
+        .email-header {
+            margin-bottom: 0; /* Remove bottom margin */
+            padding-bottom: 0; /* Remove bottom padding */
+        }
+        .email-header img {
+            display: block; /* Ensure the image behaves as a block-level element */
+            width: 100%; /* Adjusted width for the header image */
+            height: 125px;
+            margin: 0; /* Remove bottom margin */
+            padding: 0; /* Remove bottom padding */
+        }
+        .email-content {
+            background-color: rgba(232, 192, 232, 0.3); /* Pale pink transparent background for content */
+            border-radius: 0px;
+            padding: 0;
+           margin:0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: darkslateblue;
+        }
+        p {
+            font-size: 20px;
+            color: midnightblue;
+        }
+    </style>
+</head>
+<body>
+<div class="email-header" >
+    <img src="https://tazzcdn.akamaized.net/uploads/cover/emag_cover.jpg" alt="Header Image">
+</div>
+<div class="email-content" >
+    <!-- Aici se va insera conținutul dinamic generat în Java -->
+    $BODY_CONTENT$
+</div>
+</body>
+</html>

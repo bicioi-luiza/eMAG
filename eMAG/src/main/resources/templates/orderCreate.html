@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Order</title>
+    <link rel="stylesheet" href="../css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+    <link rel="stylesheet" href="../css/form.css" type="text/css" />
+</head>
+<body>
+<div th:if="${session.loggedInUser.isAdmin}">
+<div class="navbar">
+    <marquee style='background:#000000'>
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <!-- Navigation menu -->
+        <li class='dropdown'> <a href="/shopping-carts">SHOPPING CART</a>
+            <div class='dropdown-content'>
+                <a href='/shopping-carts'> READ </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/sales">SALES</a>
+            <div class='dropdown-content'>
+                <a href='/sales/insertSale'> CREATE </a>
+                <a href='/sales/updateSale'> UPDATE </a>
+                <a href='/sales'> READ </a>
+                <a href='/sales/deleteSale'> DELETE </a>
+            </div>
+        </li>
+
+        <li class='dropdown'> <a href="/orders">ORDERS</a>
+            <div class='dropdown-content'>
+                <a href='/orders/insertOrder'> CREATE </a>
+                <a href='/orders/updateOrder'> UPDATE </a>
+                <a href='/orders'> READ </a>
+                <a href='/orders/deleteOrder'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/products">PRODUCTS</a>
+            <div class='dropdown-content'>
+                <a href='/products/insertProduct'> CREATE </a>
+                <a href='/products/updateProduct'> UPDATE </a>
+                <a href='/products'> READ </a>
+                <a href='/products/deleteProduct'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/users">USERS</a>
+            <div class='dropdown-content'>
+                <a href='/userCreate'> CREATE </a>
+                <a href="/userUpdate"> UPDATE </a>
+                <a href='/users'> READ </a>
+                <a href='/userDelete'> DELETE </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<h1 th:align="center">Create Order</h1>
+<form method="POST" th:action="@{/orders/insertOrder}" th:modelAttribute="orderDTO">
+    <label for="fileType">Select File Type:</label>
+    <select id="fileType" name="fileType">
+        <option value="pdf">PDF</option>
+        <option value="csv">CSV</option>
+        <option value="txt">TXT</option>
+    </select><br>
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="users_id" required><br>
+
+    <input type="submit" value="Create Order">
+</form>
+</div>
+</body>
+</html>

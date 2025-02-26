@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Review</title>
+    <link rel="stylesheet" href="../css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="../css/users.css" type="text/css" />
+    <link rel="stylesheet" href="../css/products.css" type="text/css" />
+    <link rel="stylesheet" href="../css/form.css" type="text/css" />
+</head>
+<body>
+<div class="navbar">
+    <marquee style='background:#000000' >
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <li class='dropdown'>
+            <a th:href="@{/userOrderStatus(id=${session.loggedInUser.id})}">COMANDA</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a th:href="@{/shopping-carts/customerCart(id=${session.loggedInUser.shoppingcart.idCart})}">SHOPPING CART</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/reviews">REVIEWS</a>
+            <!-- Dropdown content for reviews -->
+            <div class='dropdown-content'>
+                <!-- Link to view all reviews -->
+                <a href='/reviews'>View Reviews</a>
+            </div>
+        </li>
+        <li class='dropdown'>
+            <a href="/products/customer">CUSTOMER</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+        <li class='dropdown'>
+            <a href="/">HOME-LOGOUT</a>
+            <!-- Dropdown content for shopping cart -->
+
+        </li>
+    </ul>
+</div>
+
+<h1>Add Review</h1>
+<form action="/reviews/insertReview" method="post" th:modelAttribute="reviewDTO">
+    <input type="hidden" id="product_id" name="product_id" th:value="${productId}" />
+    <input type="hidden" id="user_id" name="user_id" th:value="${userId}" />
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" required /><br/>
+    <label for="comment">Comment:</label>
+    <textarea id="comment" name="comment" required></textarea><br/>
+    <button type="submit">Submit Review</button>
+</form>
+</body>
+</html>

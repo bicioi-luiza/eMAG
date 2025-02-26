@@ -1,0 +1,11 @@
+com.example.demo
+com.example.demo.config
+com.example.demo.constants
+com.example.demo.controllers
+com.example.demo.dtos
+com.example.demo.dtos.builders
+com.example.demo.entities
+com.example.demo.fileGenerator
+com.example.demo.repositories
+com.example.demo.services
+com.example.demo.validators

@@ -1,0 +1,45 @@
+/* form.css */
+form {
+    width: 50%;
+    margin: 170px auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Set background color to black with opacity */
+    padding: 80px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Set input background color to white with opacity */
+    color: white;
+}
+
+input[type="checkbox"] {
+    margin-bottom: 15px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color for button */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #000000; /* Darker blue color on hover */
+}

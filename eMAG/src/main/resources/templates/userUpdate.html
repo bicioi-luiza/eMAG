@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserUpdate</title>
+    <link rel="stylesheet" href="css/styleHome.css" type="text/css" />
+    <link rel="stylesheet" href="css/users.css" type="text/css" />
+</head>
+<body>
+<div th:if="${session.loggedInUser.isAdmin}">
+<div class="navbar">
+    <marquee style='background:#000000'>
+        <img height='70' width='150' src='../img/emag.png'>
+    </marquee>
+
+    <ul>
+        <!-- Navigation menu -->
+        <li class='dropdown'> <a href="/shopping-carts">SHOPPING CART</a>
+            <div class='dropdown-content'>
+                <a href='/shopping-carts'> READ </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/sales">SALES</a>
+            <div class='dropdown-content'>
+                <a href='/sales/insertSale'> CREATE </a>
+                <a href='/sales/updateSale'> UPDATE </a>
+                <a href='/sales'> READ </a>
+                <a href='/sales/deleteSale'> DELETE </a>
+            </div>
+        </li>
+
+        <li class='dropdown'> <a href="/orders">ORDERS</a>
+            <div class='dropdown-content'>
+                <a href='/orders/insertOrder'> CREATE </a>
+                <a href='/orders/updateOrder'> UPDATE </a>
+                <a href='/orders'> READ </a>
+                <a href='/orders/deleteOrder'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/products">PRODUCTS</a>
+            <div class='dropdown-content'>
+                <a href='/products/insertProduct'> CREATE </a>
+                <a href='/products/updateProduct'> UPDATE </a>
+                <a href='/products'> READ </a>
+                <a href='/products/deleteProduct'> DELETE </a>
+            </div>
+        </li>
+        <li class='dropdown'> <a href="/users">USERS</a>
+            <div class='dropdown-content'>
+                <a href='/userCreate'> CREATE </a>
+                <a href="/userUpdate"> UPDATE </a>
+                <a href='/users'> READ </a>
+                <a href='/userDelete'> DELETE </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<h1>User Update</h1>
+<!-- Popup container for getting user by ID -->
+<section id="getUserForm" class="container_id">
+    <form th:action="@{/userUpdateDetails}" method="get">
+        <input type="text" id="userID" name="id" placeholder="Enter User ID">
+        <input  type="submit" value="Get User">
+        <button type="button" class="btn cancel" th:onclick="|window.location.href='/users'|">Cancel</button>
+    </form>
+</section>
+<!-- Form for displaying user data -->
+<section id="userDataForm" class="container_id" th:if="${users}"  onsubmit="prepareFormData()">
+    <form  th:action="@{/userUpdate}" th:method="POST" th:modelAttribute="userDTO" >
+
+        <!-- Add the user ID as a path variable -->
+        <input type="hidden" name="id" th:value="${users.id}">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:value="${users.lastName}">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:value="${users.firstName}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="${users.username}">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="${users.password}">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${users.email}">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" th:value="${users.address}">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${users.dateOfBirth}">
+        <!-- Hidden input field to store isAdmin value -->
+
+
+        <!-- Hidden input field to store isAdmin value -->
+        <input type="hidden" id="isAdminHidden" name="isAdmin" th:value="${users.isAdmin ? 'true' : 'false'}">
+
+        <!-- Checkbox for isAdmin -->
+        <label for="isAdminCheckbox">Is Admin:</label>
+        <input type="checkbox" id="isAdminCheckbox" name="isAdminCheckbox" th:checked="${users.isAdmin}" onchange="updateIsAdmin()">
+
+        <input type="submit" value="Update User">
+    </form>
+</section>
+</div>
+<script>
+    function updateIsAdmin() {
+        var isAdminCheckbox = document.getElementById('isAdminCheckbox');
+        var isAdminHidden = document.getElementById('isAdminHidden');
+
+        if (isAdminCheckbox.checked) {
+            isAdminHidden.value = 'true';
+        } else {
+            isAdminHidden.value = 'false';
+        }
+    }
+</script>
+
+
+</body>
+</html>
